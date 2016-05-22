@@ -66,6 +66,9 @@ public class Main {
                             break;
                         default:
                          //   sendSamplePostBackMessage(senderId);
+                            Message.Text("Спасибо за интерес к нашей компании!").sendTo(senderId);
+                            Message.Image("https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/10653363_745618215533353_8151139926344498327_n.png?oh=b9a4ae206114d0996873fdc117cec7e8&oe=57DE417B").sendTo(senderId);
+
                             firstMenu(senderId);
 
                             break;
@@ -76,7 +79,7 @@ public class Main {
                     if (messaging.postback.payload == Action.ACTION_A) {
                         Message.Text("Хорошо что вы интересуетесь СММ").sendTo(senderId);
                     }else if (messaging.postback.payload == Action.ACTION_B){
-                        Message.Text("Колл центр оцень хорошо").sendTo(senderId);
+                        Message.Text("Колл центр очень хорошо").sendTo(senderId);
                     }else if (messaging.postback.payload == Action.ACTION_C){
                        // Message.Text("Колл центр оцень хорошо").sendTo(senderId);
                         suvenirMenu(senderId);
@@ -124,7 +127,7 @@ public class Main {
         Message message = Message.Generic();
         Element element = new Element("Футболка", "http://www.dhresource.com/albu_606424795_00-1.600x600/wjx670-2014-smmmer-3d-print-pattern-t-shirt.jpg", "лучший подарок");
         message.addElement(element);
-        element = new Element("Yay Yay", "https://content.freelancehunt.com/snippet/8e5fa/9497f/239475/%D1%81%D1%83%D0%B2%D0%B5%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F+%D1%87%D0%B0%D1%88%D0%BA%D0%B0.png", "subtitle");
+        element = new Element("Чашка", "https://content.freelancehunt.com/snippet/8e5fa/9497f/239475/%D1%81%D1%83%D0%B2%D0%B5%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F+%D1%87%D0%B0%D1%88%D0%BA%D0%B0.png", "лучший подарок");
         element.addButton(Button.Postback("Заказать", Action.ACTION_D));
         element.addButton(Button.Url("Детальнее", "https://facebook.com/"));
         message.addElement(element);
