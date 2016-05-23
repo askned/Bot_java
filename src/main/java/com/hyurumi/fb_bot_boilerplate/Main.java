@@ -79,7 +79,7 @@ public class Main {
                     // Receiving postback message
                     if (messaging.postback.payload == Action.ACTION_A) {
                         Message.Text("Хорошо что вы интересуетесь СММ").sendTo(senderId);
-                        new Mail();
+                        Mail.sendMail();
                     }else if (messaging.postback.payload == Action.ACTION_B){
                         Message.Text("Колл центр очень хорошо").sendTo(senderId);
                     }else if (messaging.postback.payload == Action.ACTION_C){

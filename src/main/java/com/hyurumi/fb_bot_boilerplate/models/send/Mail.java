@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class Mail {
 
-    public static void Mail() {
+    public static void sendMail() {
 
         final String username = "shevchenko.develop@gmail.com";
         final String password = "shevchenkodevelop@gmail.com";
