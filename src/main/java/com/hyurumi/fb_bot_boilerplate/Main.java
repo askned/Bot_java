@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.hyurumi.fb_bot_boilerplate.models.common.Action;
 import com.hyurumi.fb_bot_boilerplate.models.send.Button;
 import com.hyurumi.fb_bot_boilerplate.models.send.Element;
+import com.hyurumi.fb_bot_boilerplate.models.send.Mail;
 import com.hyurumi.fb_bot_boilerplate.models.send.Message;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.Messaging;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.ReceivedMessage;
@@ -78,6 +79,7 @@ public class Main {
                     // Receiving postback message
                     if (messaging.postback.payload == Action.ACTION_A) {
                         Message.Text("Хорошо что вы интересуетесь СММ").sendTo(senderId);
+                        new Mail();
                     }else if (messaging.postback.payload == Action.ACTION_B){
                         Message.Text("Колл центр очень хорошо").sendTo(senderId);
                     }else if (messaging.postback.payload == Action.ACTION_C){
