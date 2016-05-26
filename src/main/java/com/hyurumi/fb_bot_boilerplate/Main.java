@@ -71,7 +71,7 @@ public class Main {
                             Message.Image("https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/10653363_745618215533353_8151139926344498327_n.png?oh=b9a4ae206114d0996873fdc117cec7e8&oe=57DE417B").sendTo(senderId);
 
                             firstMenu(senderId);
-
+                             Message.Text(messagings.size()).sendTo(senderId);
                             break;
                     }
 
