@@ -9,6 +9,10 @@ import com.hyurumi.fb_bot_boilerplate.models.send.Message;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.Messaging;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.ReceivedMessage;
 import okhttp3.*;
+import org.bots4j.wit.WitClient;
+import org.bots4j.wit.beans.GetIntentViaTextResponse;
+import org.bots4j.wit.beans.Outcome;
+
 
 import java.util.List;
 import java.util.Random;
@@ -32,10 +36,11 @@ public class Main {
         sRandom = new Random();
         sAccessToken = System.getenv("ACCESS_TOKEN");
         sValidationToken = System.getenv("VALIDATION_TOKEN");
+
     }
 
     public static void main(String[] args) {
-
+        WitClient client = new WitClient("7PMAUKHCBWXQEGW4JKBP55IWJDNA2KJ2");
         port(Integer.valueOf(System.getenv("PORT")));
 
         get("/webhook", (request, response) -> {
@@ -72,6 +77,9 @@ public class Main {
 
                             firstMenu(senderId);
                            //  Message.Text(String.valueOf(messagings.size())).sendTo(senderId);
+                            GetIntentViaTextResponse resp2 = client.getIntentViaText(messaging.message.text,null,null,null,null);
+                            Outcome outcome = resp2.getOutcomes().get(0);
+                            Message.Text(outcome.getText()).sendTo(senderId);
                             break;
                     }
 
@@ -134,5 +142,17 @@ public class Main {
         element.addButton(Button.Url("Детальнее", "https://facebook.com/"));
         message.addElement(element);
         message.sendTo(senderId);
+    }
+   void startWit(){
+        WitClient client = new WitClient("7PMAUKHCBWXQEGW4JKBP55IWJDNA2KJ2");
+
+        String message = "i want to be in paris on the 3rd of may?";
+
+        GetIntentViaTextResponse response = client.getIntentViaText(message,null,null,null,null);
+       // assertNotNull(response.getOutcomes());
+
+        Outcome outcome = response.getOutcomes().get(0);
+      //  assertEquals("book-trip", outcome.getEntities().firstEntityValue("intent"));
+      //  assertEquals("paris", outcome.getEntities().firstEntityValue("location"));
     }
 }

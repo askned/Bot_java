@@ -6,6 +6,13 @@
     <groupId>com.hyurumi</groupId>
     <version>0.1-SNAPSHOT</version>
     <artifactId>fb_bot_boilerplate</artifactId>
+    <repositories>
+        <repository>
+            <id>bintray-bots4j-maven-repo</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/bots4j/maven-repo</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>com.sparkjava</groupId>
@@ -17,6 +24,12 @@
     <artifactId>mail</artifactId>
     <version>1.4</version>
          </dependency>
+
+        <dependency>
+            <groupId>org.bots4j</groupId>
+            <artifactId>wit-ai-client</artifactId>
+            <version>0.01</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
