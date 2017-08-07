@@ -1,5 +1,9 @@
 package com.hyurumi.fb_bot_boilerplate;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseCredentials;
+import com.google.firebase.database.*;
 import com.google.gson.Gson;
 import com.hyurumi.fb_bot_boilerplate.models.common.Action;
 import com.hyurumi.fb_bot_boilerplate.models.send.Button;
@@ -9,6 +13,9 @@ import com.hyurumi.fb_bot_boilerplate.models.webhook.Messaging;
 import com.hyurumi.fb_bot_boilerplate.models.webhook.ReceivedMessage;
 import okhttp3.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -23,6 +30,8 @@ public class Main {
     public static final MediaType JSON;
     private static final Random sRandom;
     private static final Gson GSON;
+    private static DatabaseReference database;
+
 
     static {
         JSON = MediaType.parse("application/json; charset=utf-8");
@@ -50,6 +59,7 @@ public class Main {
             for (Messaging messaging : messagings) {
                 String senderId = messaging.sender.id;
                 if (messaging.message !=null) {
+                    database.push().setValue(messaging.message);
                     // Receiving text message
                     switch (sRandom.nextInt(4)){
                         case 0:
@@ -85,6 +95,17 @@ public class Main {
             }
             return "";
         });
+
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setCredential(FirebaseCredentials.applicationDefault())
+                .setDatabaseUrl("https://autorisation-cc532.firebaseio.com/")
+                .build();
+
+        FirebaseApp.initializeApp(options);
+        // Shared Database reference
+        database = FirebaseDatabase.getInstance().getReference();
+
+
     }
 
     static private void sendSamplePostBackMessage(String senderId) throws Exception {
@@ -105,4 +126,7 @@ public class Main {
         message.addElement(element);
         message.sendTo(senderId);
     }
+
+
+
 }
